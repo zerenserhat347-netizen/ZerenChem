@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zeren Chemistry | Serhat Zeren</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>tailwind.config={darkMode:'class'}</script>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--tx:#0f172a;--mut:#475569;--bd:#d5deeb;--blue:#0284c7;--green:#059669;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root:not([data-theme="light"]).dark,:root.dark{--bg:#060b18;--card:#0d1630;--tx:#e6edf7;--mut:#8da2c0;--bd:#1b2a4d;--blue:#22d3ee;--green:#34f5a0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;margin:0}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px}
+.glow{color:var(--blue);text-shadow:0 0 18px color-mix(in srgb,var(--blue) 45%,transparent)}
+.grad{background:linear-gradient(90deg,var(--blue),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn{border:1px solid var(--blue);color:var(--blue);border-radius:10px;padding:.5rem 1rem;transition:.2s}
+.btn:hover{background:var(--blue);color:#001018}
+#pt{display:grid;grid-template-columns:repeat(18,minmax(46px,1fr));gap:4px;min-width:900px}
+.el{aspect-ratio:1;border:1px solid var(--c);background:color-mix(in srgb,var(--c) 16%,transparent);border-radius:6px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;line-height:1.1;transition:.15s;color:var(--tx)}
+.el b{font-size:15px}
+.el:hover{transform:scale(1.12);z-index:2;box-shadow:0 0 14px var(--c)}
+.el.dim{opacity:.12}
+.el.hit{transform:scale(1.25);z-index:3;box-shadow:0 0 22px var(--c),0 0 0 2px var(--c);background:color-mix(in srgb,var(--c) 55%,transparent)}
+.a{--c:#ff5c7a}.e{--c:#ff9f43}.t{--c:#4da3ff}.p{--c:#8b9cff}.m{--c:#2dd4bf}.n{--c:#34f5a0}.h{--c:#e8e84a}.g{--c:#c77dff}.l{--c:#ff7ad9}.c{--c:#f472b6}
+.opt{width:100%;text-align:left;padding:.75rem 1rem;border:1px solid var(--bd);border-radius:12px;background:transparent;color:var(--tx);cursor:pointer;transition:.15s}
+.opt:hover:not(:disabled){border-color:var(--blue)}
+.opt.ok{border-color:var(--green);background:color-mix(in srgb,var(--green) 18%,transparent)}
+.opt.no{border-color:#ff4d6d;background:color-mix(in srgb,#ff4d6d 18%,transparent)}
+</style>
+</head>
+<body>
+<header class="sticky top-0 z-40 backdrop-blur" style="background:color-mix(in srgb,var(--bg) 85%,transparent);border-bottom:1px solid var(--bd)">
+ <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-3">
+  <a href="#top" class="font-bold text-lg grad">⚛ Zeren Chemistry</a>
+  <nav class="hidden sm:flex gap-5 text-sm" style="color:var(--mut)">
+   <a href="#" id="navabout" class="hover:text-cyan-400">Zeren Hakkında</a><a href="#tablo" class="hover:text-cyan-400">Periyodik Tablo</a><a href="#test" class="hover:text-cyan-400">Test</a><a href="#lider" class="hover:text-cyan-400">Liderlik</a><a href="#konular" class="hover:text-cyan-400">Konu Dağılımı</a><a href="#formuller" class="hover:text-cyan-400">Formüller</a><a href="#oneriler" class="hover:text-cyan-400">Öneriler</a>
+  </nav>
+  <span id="chip" class="hidden text-sm glow whitespace-nowrap"></span><button id="theme" class="btn text-sm" aria-label="Tema değiştir">☀ Açık</button>
+ </div>
+</header>
+
+<main id="top">
+<section class="max-w-6xl mx-auto px-4 pt-16 pb-10 text-center">
+ <p class="text-sm tracking-widest" style="color:var(--green)">KİMYA • TYT / AYT • İNTERAKTİF ÖĞRENME</p>
+ <h1 id="hello" class="text-4xl sm:text-6xl font-extrabold mt-3">Hoşgeldin <span class="grad">Napıyoruz</span></h1>
+ <p class="mt-4 max-w-xl mx-auto" style="color:var(--mut)">118 elementli interaktif periyodik tablo ve TYT/AYT kimya seviyesinde testlerle öğrenmeyi keşfet.</p>
+ <p id="yks" class="mt-4 text-sm font-semibold" style="color:var(--green)"></p><div id="badges" class="mt-2 text-sm" style="color:var(--mut)"></div><div class="mt-6 flex flex-wrap gap-3 justify-center"><button id="aboutbtn" class="btn">👤 Zeren Hakkında</button><a href="#tablo" class="btn">Periyodik Tabloya Git</a><a href="#test" class="btn">Teste Başla</a><a href="#oneriler" class="btn">▶ YouTube Hocaları</a><button id="reg" class="btn">Kayıt Ol / Giriş</button></div>
+</section>
+
+<section id="tablo" class="max-w-6xl mx-auto px-4 py-12">
+ <h2 class="text-2xl sm:text-3xl font-bold mb-2 glow">İnteraktif Periyodik Tablo</h2>
+ <p class="text-sm mb-4" style="color:var(--mut)">Element adı, sembol veya atom numarası ara. Detay için elemente tıkla.</p>
+ <div class="flex flex-col sm:flex-row gap-3 mb-3">
+  <input id="q" type="search" placeholder="Örn: Sodyum, Na veya 11" autocomplete="off" class="flex-1 px-4 py-3 rounded-xl outline-none" style="background:var(--card);border:1px solid var(--bd);color:var(--tx)">
+  <button id="clr" class="btn">Temizle</button>
+ </div>
+ <div id="flt" class="flex flex-wrap gap-2 mb-3"></div><p id="msg" class="text-sm mb-3 min-h-5" style="color:var(--green)"></p>
+ <div class="card p-3 overflow-x-auto"><div id="pt"></div></div>
+ <div id="leg" class="flex flex-wrap gap-3 mt-4 text-xs" style="color:var(--mut)"></div>
+</section>
+
+<section id="test" class="max-w-3xl mx-auto px-4 py-12">
+ <h2 class="text-2xl sm:text-3xl font-bold mb-4 glow">Test Modülü</h2><div class="flex gap-2 mb-4" id="tabs"><button class="btn" data-m="k">Kimya Testi</button><button class="btn" data-m="e">Element Testi</button><button class="btn" data-m="d">Detaylı Element Testi</button><button class="btn" data-m="y" id="ybtn">Yanlışlarım</button></div>
+ <div class="grid grid-cols-4 gap-2 mb-4 text-center text-sm">
+  <div class="card py-2">Doğru<br><b id="sd" style="color:var(--green)">0</b></div>
+  <div class="card py-2">Yanlış<br><b id="sy" class="text-rose-400">0</b></div>
+  <div class="card py-2">Net<br><b id="sn" class="glow">0</b></div>
+  <div class="card py-2">Soru<br><b id="sq">1/8</b></div>
+ </div>
+ <div class="card p-5 sm:p-6" id="qbox"></div>
+ <p class="text-xs mt-2" style="color:var(--mut)">Net = Doğru − (Yanlış ÷ 4); boş cevap neti etkilemez. Puan (30 soruda): hepsi doğru = 10 • üçte iki ve üzeri = 8 • üçte bir ve üzeri = 5 • en az 1 doğru = 3. Puan soru sayısına göre orantılanır. Her test bitince yeni sorularla yeni test gelir.</p>
+</section>
+<section id="lider" class="max-w-3xl mx-auto px-4 py-12">
+ <h2 class="text-2xl sm:text-3xl font-bold mb-4 glow">🏆 Puan Liderlik Tablosu</h2>
+ <div class="flex gap-2 mb-4" id="ltabs"><button class="btn" data-t="all">Tüm Zamanlar</button><button class="btn" data-t="m">Bu Ay</button><button class="btn" data-t="w">Bu Hafta</button></div>
+ <div class="card overflow-hidden" id="lbox"></div>
+</section>
+<section id="konular" class="max-w-6xl mx-auto px-4 py-12">
+ <h2 class="text-2xl sm:text-3xl font-bold mb-2 glow">📊 Kimya Konu Dağılımı</h2>
+ <p class="text-sm mb-4" style="color:var(--mut)">Yıllara göre sınavda çıkan kimya soru sayıları. Koyu kutular daha çok çıkan konulardır.</p>
+ <div class="flex gap-2 mb-4" id="ktabs"><button class="btn" data-t="tyt">TYT Kimya</button><button class="btn" data-t="ayt">AYT Kimya</button></div>
+ <div class="card overflow-x-auto" id="kbox"></div>
+</section>
+<section id="formuller" class="max-w-6xl mx-auto px-4 py-12"><h2 class="text-2xl sm:text-3xl font-bold mb-4 glow">📐 Formül ve Özet Kartları</h2><div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"><div class="card p-5"><h4 class="font-bold mb-2 glow">Mol Kavramı</h4><ul class="text-sm grid gap-1" style="color:var(--mut)"><li>• n = m / MA</li><li>• n = N / NA  (NA = 6,02·10²³)</li><li>• NŞA’da n = V / 22,4</li></ul></div><div class="card p-5"><h4 class="font-bold mb-2 glow">Molarite</h4><ul class="text-sm grid gap-1" style="color:var(--mut)"><li>• M = n / V (L)</li><li>• Seyreltme: M₁V₁ = M₂V₂</li><li>• Karışım: M = (n₁ + n₂) / (V₁ + V₂)</li></ul></div><div class="card p-5"><h4 class="font-bold mb-2 glow">pH ve pOH</h4><ul class="text-sm grid gap-1" style="color:var(--mut)"><li>• pH = −log[H⁺]</li><li>• pOH = −log[OH⁻]</li><li>• pH + pOH = 14  (25 °C)</li></ul></div><div class="card p-5"><h4 class="font-bold mb-2 glow">Gazlar</h4><ul class="text-sm grid gap-1" style="color:var(--mut)"><li>• PV = nRT  (R = 0,082 L·atm/mol·K)</li><li>• Boyle: P₁V₁ = P₂V₂</li><li>• Charles: V₁/T₁ = V₂/T₂</li><li>• T(K) = °C + 273</li></ul></div><div class="card p-5"><h4 class="font-bold mb-2 glow">Atom ve İyon</h4><ul class="text-sm grid gap-1" style="color:var(--mut)"><li>• Kütle numarası A = proton + nötron</li><li>• Nötr atomda proton = elektron = Z</li><li>• İyonda elektron = Z − yük</li></ul></div><div class="card p-5"><h4 class="font-bold mb-2 glow">Yoğunluk ve Yüzde</h4><ul class="text-sm grid gap-1" style="color:var(--mut)"><li>• d = m / V</li><li>• Kütlece % = (m çözünen / m çözelti) · 100</li></ul></div><div class="card p-5"><h4 class="font-bold mb-2 glow">Isı</h4><ul class="text-sm grid gap-1" style="color:var(--mut)"><li>• Q = m · c · ΔT</li><li>• Suyun öz ısısı: c = 4,18 J/g·°C</li></ul></div></div></section>
+<section id="oneriler" class="max-w-6xl mx-auto px-4 py-12">
+ <h2 class="text-2xl sm:text-3xl font-bold mb-2 glow">💡 Öneriler ve Tavsiyeler</h2>
+ <h3 class="text-lg font-semibold mb-1">▶ YouTube Hocaları</h3>
+ <p class="text-sm mb-4" style="color:var(--mut)">Kimya çalışırken beğenerek takip ettiğim ve tavsiye ettiğim kanallar. Karta tıklayınca kanal yeni sekmede açılır.</p>
+ <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"><a href="https://www.youtube.com/@yferrum" target="_blank" rel="noopener noreferrer" class="card p-5 block transition hover:-translate-y-1" style="text-decoration:none;color:inherit"><div class="flex items-center gap-3 mb-3"><div class="flex items-center justify-center rounded-xl font-bold shrink-0" style="width:44px;height:44px;background:linear-gradient(135deg,var(--blue),var(--green));color:#001018">▶</div><div><h4 class="font-bold">Ferrum</h4><p class="text-xs" style="color:var(--mut)">Yakup Demir</p></div></div><p class="text-sm leading-relaxed" style="color:var(--mut)">Yakup Demir hocam güzel, özenli ve sakin anlatımıyla ön plana çıkıyor.</p><p class="text-sm mt-3 font-semibold" style="color:var(--blue)">Kanala git →</p></a><a href="https://www.youtube.com/@BenimHocam" target="_blank" rel="noopener noreferrer" class="card p-5 block transition hover:-translate-y-1" style="text-decoration:none;color:inherit"><div class="flex items-center gap-3 mb-3"><div class="flex items-center justify-center rounded-xl font-bold shrink-0" style="width:44px;height:44px;background:linear-gradient(135deg,var(--blue),var(--green));color:#001018">▶</div><div><h4 class="font-bold">Benim Hocam</h4><p class="text-xs" style="color:var(--mut)">Görkem Şahin</p></div></div><p class="text-sm leading-relaxed" style="color:var(--mut)">Görkem hocam, Benim Hocam kanalında kendi anlatım tarzıyla eğlenceli ve öğretici dersler yapıyor. Tahta başındaki anlatımı ve hikâyeleriyle öne çıkıyor.</p><p class="text-sm mt-3 font-semibold" style="color:var(--blue)">Kanala git →</p></a><a href="https://www.youtube.com/@KİMYAADASI" target="_blank" rel="noopener noreferrer" class="card p-5 block transition hover:-translate-y-1" style="text-decoration:none;color:inherit"><div class="flex items-center gap-3 mb-3"><div class="flex items-center justify-center rounded-xl font-bold shrink-0" style="width:44px;height:44px;background:linear-gradient(135deg,var(--blue),var(--green));color:#001018">▶</div><div><h4 class="font-bold">Kimya Adası</h4><p class="text-xs" style="color:var(--mut)">Kimya Adası</p></div></div><p class="text-sm leading-relaxed" style="color:var(--mut)">Kimya konularını adım adım ve anlaşılır biçimde işleyen, düzenli takip etmek isteyenler için güzel bir kaynak.</p><p class="text-sm mt-3 font-semibold" style="color:var(--blue)">Kanala git →</p></a><a href="https://www.youtube.com/@kimyaozel" target="_blank" rel="noopener noreferrer" class="card p-5 block transition hover:-translate-y-1" style="text-decoration:none;color:inherit"><div class="flex items-center gap-3 mb-3"><div class="flex items-center justify-center rounded-xl font-bold shrink-0" style="width:44px;height:44px;background:linear-gradient(135deg,var(--blue),var(--green));color:#001018">▶</div><div><h4 class="font-bold">Kimya Özel</h4><p class="text-xs" style="color:var(--mut)">Kimya Özel</p></div></div><p class="text-sm leading-relaxed" style="color:var(--mut)">Konuları sade ve anlaşılır anlatan, tekrar yapmak isteyenlere iyi gelen bir kimya kanalı.</p><p class="text-sm mt-3 font-semibold" style="color:var(--blue)">Kanala git →</p></a><a href="https://www.youtube.com/@meschemykimya" target="_blank" rel="noopener noreferrer" class="card p-5 block transition hover:-translate-y-1" style="text-decoration:none;color:inherit"><div class="flex items-center gap-3 mb-3"><div class="flex items-center justify-center rounded-xl font-bold shrink-0" style="width:44px;height:44px;background:linear-gradient(135deg,var(--blue),var(--green));color:#001018">▶</div><div><h4 class="font-bold">Meschemy Kimya</h4><p class="text-xs" style="color:var(--mut)">Meschemy Kimya</p></div></div><p class="text-sm leading-relaxed" style="color:var(--mut)">Güler yüzlü anlatımıyla derse sıcak bir hava katıyor. Konuları rahat ve sıkılmadan takip edebilirsiniz.</p><p class="text-sm mt-3 font-semibold" style="color:var(--blue)">Kanala git →</p></a><a href="https://www.youtube.com/@KimyaDersleri" target="_blank" rel="noopener noreferrer" class="card p-5 block transition hover:-translate-y-1" style="text-decoration:none;color:inherit"><div class="flex items-center gap-3 mb-3"><div class="flex items-center justify-center rounded-xl font-bold shrink-0" style="width:44px;height:44px;background:linear-gradient(135deg,var(--blue),var(--green));color:#001018">▶</div><div><h4 class="font-bold">Kimya Dersleri</h4><p class="text-xs" style="color:var(--mut)">Kimya Dersleri</p></div></div><p class="text-sm leading-relaxed" style="color:var(--mut)">Konu konu ilerleyen ders videolarıyla kimyayı baştan öğrenmek ve eksikleri kapatmak isteyenler için uygun bir kaynak.</p><p class="text-sm mt-3 font-semibold" style="color:var(--blue)">Kanala git →</p></a><a href="https://www.youtube.com/@SimyacıKimyaAkademisi" target="_blank" rel="noopener noreferrer" class="card p-5 block transition hover:-translate-y-1" style="text-decoration:none;color:inherit"><div class="flex items-center gap-3 mb-3"><div class="flex items-center justify-center rounded-xl font-bold shrink-0" style="width:44px;height:44px;background:linear-gradient(135deg,var(--blue),var(--green));color:#001018">▶</div><div><h4 class="font-bold">Simyacı Kimya Akademisi</h4><p class="text-xs" style="color:var(--mut)">Simyacı Kimya Akademisi</p></div></div><p class="text-sm leading-relaxed" style="color:var(--mut)">Konuları düzenli bir sırayla işleyerek kimyayı sevdirmeye yardımcı olan bir kimya akademisi kanalı.</p><p class="text-sm mt-3 font-semibold" style="color:var(--blue)">Kanala git →</p></a><a href="https://www.youtube.com/@CelalHocaileKimya" target="_blank" rel="noopener noreferrer" class="card p-5 block transition hover:-translate-y-1" style="text-decoration:none;color:inherit"><div class="flex items-center gap-3 mb-3"><div class="flex items-center justify-center rounded-xl font-bold shrink-0" style="width:44px;height:44px;background:linear-gradient(135deg,var(--blue),var(--green));color:#001018">▶</div><div><h4 class="font-bold">Celal Hoca ile Kimya</h4><p class="text-xs" style="color:var(--mut)">Celal Hoca</p></div></div><p class="text-sm leading-relaxed" style="color:var(--mut)">Celal hocanın anlatımıyla kimya konularını yakından takip edebileceğiniz, öğrenciye yakın bir kanal.</p><p class="text-sm mt-3 font-semibold" style="color:var(--blue)">Kanala git →</p></a></div>
+</section>
+</main>
+
+<footer class="mt-8 py-8 text-center text-sm" style="border-top:1px solid var(--bd);color:var(--mut)">
+ <div class="flex justify-center gap-4 mb-3"><a href="#" class="hover:text-cyan-400">Instagram</a><a href="#" class="hover:text-cyan-400">GitHub</a><a href="#" class="hover:text-cyan-400">YouTube</a></div>
+ © <span id="yr"></span> Zeren Chemistry. Tüm hakları saklıdır.<br><span class="grad font-semibold">Bu bir Serhat Zeren ürünüdür.</span>
+</footer>
+
+<div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4" style="background:rgba(0,0,0,.65)">
+ <div class="card p-6 w-full max-w-sm relative" id="mc"></div>
+</div>
+
+<script>
+const D="Hidrojen,1.008|Helyum,4.003|Lityum,6.94|Berilyum,9.012|Bor,10.81|Karbon,12.011|Azot,14.007|Oksijen,15.999|Flor,18.998|Neon,20.18|Sodyum,22.99|Magnezyum,24.305|Alüminyum,26.982|Silisyum,28.085|Fosfor,30.974|Kükürt,32.06|Klor,35.45|Argon,39.948|Potasyum,39.098|Kalsiyum,40.078|Skandiyum,44.956|Titanyum,47.867|Vanadyum,50.942|Krom,51.996|Mangan,54.938|Demir,55.845|Kobalt,58.933|Nikel,58.693|Bakır,63.546|Çinko,65.38|Galyum,69.723|Germanyum,72.63|Arsenik,74.922|Selenyum,78.971|Brom,79.904|Kripton,83.798|Rubidyum,85.468|Stronsiyum,87.62|İtriyum,88.906|Zirkonyum,91.224|Niyobyum,92.906|Molibden,95.95|Teknesyum,98|Rutenyum,101.07|Rodyum,102.91|Paladyum,106.42|Gümüş,107.87|Kadmiyum,112.41|İndiyum,114.82|Kalay,118.71|Antimon,121.76|Tellür,127.6|İyot,126.9|Ksenon,131.29|Sezyum,132.91|Baryum,137.33|Lantan,138.91|Seryum,140.12|Praseodim,140.91|Neodim,144.24|Prometyum,145|Samaryum,150.36|Evropiyum,151.96|Gadolinyum,157.25|Terbiyum,158.93|Disprosyum,162.5|Holmiyum,164.93|Erbiyum,167.26|Tulyum,168.93|İterbiyum,173.05|Lutesyum,174.97|Hafniyum,178.49|Tantal,180.95|Tungsten,183.84|Renyum,186.21|Osmiyum,190.23|İridyum,192.22|Platin,195.08|Altın,196.97|Cıva,200.59|Talyum,204.38|Kurşun,207.2|Bizmut,208.98|Polonyum,209|Astatin,210|Radon,222|Fransiyum,223|Radyum,226|Aktinyum,227|Toryum,232.04|Protaktinyum,231.04|Uranyum,238.03|Neptünyum,237|Plütonyum,244|Amerikyum,243|Küriyum,247|Berkelyum,247|Kaliforniyum,251|Aynştaynyum,252|Fermiyum,257|Mendelevyum,258|Nobelyum,259|Lavrensiyum,266|Rutherfordyum,267|Dubniyum,268|Seaborgiyum,269|Bohriyum,270|Hassiyum,277|Meitneriyum,278|Darmstadtiyum,281|Röntgenyum,282|Kopernikyum,285|Nihonyum,286|Flerovyum,289|Moskovyum,290|Livermoryum,293|Tennessin,294|Oganesson,294";
+const S="H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn Fr Ra Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr Rf Db Sg Bh Hs Mt Ds Rg Cn Nh Fl Mc Lv Ts Og".split(" ");
+const CN={a:"Alkali metal",e:"Toprak alkali metal",t:"Geçiş metali",p:"Zayıf metal",m:"Yarı metal",n:"Ametal",h:"Halojen",g:"Soy gaz",l:"Lantanit",c:"Aktinit"};
+function cat(z){const i=(a)=>a.includes(z);if(i([2,10,18,36,54,86,118]))return'g';if(i([1,6,7,8,15,16,34]))return'n';if(i([9,17,35,53,85,117]))return'h';if(i([5,14,32,33,51,52]))return'm';if(i([3,11,19,37,55,87]))return'a';if(i([4,12,20,38,56,88]))return'e';if(z>=57&&z<=71)return'l';if(z>=89&&z<=103)return'c';if(i([13,31,49,50,81,82,83,84,113,114,115,116]))return'p';return't'}
+function pos(z){let r,c;if(z==1){r=1;c=1}else if(z==2){r=1;c=18}else if(z<=4){r=2;c=z-2}else if(z<=10){r=2;c=z+8}else if(z<=12){r=3;c=z-10}else if(z<=18){r=3;c=z}else if(z<=36){r=4;c=z-18}else if(z<=54){r=5;c=z-36}else if(z<=56){r=6;c=z-54}else if(z<=71){r=9;c=z-54}else if(z<=86){r=6;c=z-68}else if(z<=88){r=7;c=z-86}else if(z<=103){r=10;c=z-86}else{r=7;c=z-100}return[r,c]}
+const EL=D.split("|").map((s,i)=>{const[n,m]=s.split(",");const z=i+1;return{z,s:S[i],n,m:+m,k:cat(z),p:pos(z)}});
+const tr=x=>x.toLocaleLowerCase("tr").trim();
+const pt=document.getElementById("pt");
+EL.forEach(e=>{const d=document.createElement("div");d.className="el "+e.k;d.style.gridRow=e.p[0];d.style.gridColumn=e.p[1];d.innerHTML=`<span>${e.z}</span><b>${e.s}</b>`;d.title=e.n;d.onclick=()=>openEl(e);e.d=d;pt.appendChild(d)});
+document.getElementById("leg").innerHTML=Object.keys(CN).map(k=>`<span class="flex items-center gap-1"><i class="w-3 h-3 rounded-sm inline-block ${k}" style="background:var(--c)"></i>${CN[k]}</span>`).join("");
+const q=document.getElementById("q"),msg=document.getElementById("msg");
+function search(){const v=tr(q.value);EL.forEach(e=>e.d.classList.remove("dim","hit"));if(!v){msg.textContent="";return}
+ const hits=EL.filter(e=>tr(e.s)===v||String(e.z)===v||(v.length>=3?tr(e.n).includes(v):tr(e.n).startsWith(v)));
+ EL.forEach(e=>e.d.classList.add(hits.includes(e)?"hit":"dim"));
+ msg.textContent=hits.length?hits.map(e=>`${e.n} (${e.s}, ${e.z})`).join(" • "):"Eşleşen element bulunamadı.";msg.style.color=hits.length?"var(--green)":"#fb7185"}
+q.oninput=search;document.getElementById("clr").onclick=()=>{q.value="";search()};
+const modal=document.getElementById("modal"),mc=document.getElementById("mc");
+const sp=n=>String(n).replace(/\d/g,d=>"⁰¹²³⁴⁵⁶⁷⁸⁹"[d]);
+const ENV="2.20,-,0.98,1.57,2.04,2.55,3.04,3.44,3.98,-,0.93,1.31,1.61,1.90,2.19,2.58,3.16,-,0.82,1.00,1.36,1.54,1.63,1.66,1.55,1.83,1.88,1.91,1.90,1.65,1.81,2.01,2.18,2.55,2.96,3.00".split(",");
+const USE={1:"Roket yakıtı, amonyak üretimi, hidrojen enerjisi",2:"Balonlar, MR cihazlarında soğutma",3:"Pil ve bataryalar",6:"Organik bileşiklerin temeli, elmas ve grafit",7:"Gübre ve amonyak üretimi",8:"Solunum, yanma, tıbbi oksijen",9:"Diş macunu (florür), teflon",10:"Neon tabelalar",11:"Sofra tuzu (NaCl), sabun, cam",12:"Hafif alaşımlar, havai fişek",13:"Folyo, ambalaj, uçak yapımı",14:"Bilgisayar çipleri, güneş pilleri, cam",15:"Gübre, kibrit",16:"Sülfürik asit, kauçuk vulkanizasyonu",17:"Su dezenfeksiyonu, PVC",18:"Ampuller, kaynak koruyucu gaz",19:"Gübre, sinir iletimi",20:"Kemik, diş, çimento",22:"Hafif ve dayanıklı alaşımlar, implantlar",26:"Çelik, yapı malzemeleri",28:"Paslanmaz çelik, madeni paralar",29:"Elektrik telleri, borular, alaşımlar",30:"Galvaniz, pil, pirinç alaşımı",35:"Dezenfektan, yangın geciktirici",47:"Takı, ayna, elektronik",50:"Teneke kaplama, lehim",53:"Antiseptik, tiroit için gerekli",56:"Röntgende kontrast madde",74:"Ampul filamanı",78:"Katalitik konvertör, takı",79:"Takı, elektronik",80:"Termometre, barometre (zehirlidir)",82:"Akü, radyasyondan korunma",92:"Nükleer enerji yakıtı"};
+function cfg(z){const O=["1s","2s","2p","3s","3p","4s","3d","4p","5s","4d","5p","6s","4f","5d","6p","7s","5f","6d","7p"],cp={s:2,p:6,d:10,f:14},P={24:{"4s":1,"3d":5},29:{"4s":1,"3d":10},42:{"5s":1,"4d":5},46:{"5s":0,"4d":10},47:{"5s":1,"4d":10},78:{"6s":1,"4f":14,"5d":9},79:{"6s":1,"5d":10}},cn={2:"He",10:"Ne",18:"Ar",36:"Kr",54:"Xe",86:"Rn"},f={},sh={};let r=z,cum=0,core=0,nm="";
+for(const o of O){const k=Math.min(r,cp[o[1]]);f[o]=k;r-=k}Object.assign(f,P[z]||{});
+for(const o of O){cum+=cp[o[1]];if(cn[cum]&&cum<z){core=cum;nm=cn[cum]}}
+const out=[];let cm=0;for(const o of O){cm+=cp[o[1]];if(cm>core&&f[o]>0)out.push(o+sp(f[o]));sh[o[0]]=(sh[o[0]]||0)+f[o]}
+return{s:(nm?"["+nm+"] ":"")+out.join(" "),sh:Object.keys(sh).sort().map(k=>sh[k]).filter(x=>x>0)}}
+function openEl(e){mc.style.maxWidth="";mc.style.maxHeight="88vh";mc.style.overflowY="auto";const nt=Math.round(e.m)-e.z,c=cfg(e.z),st=e.z>=104?"Bilinmiyor":[35,80].includes(e.z)?"Sıvı":[1,2,7,8,9,10,17,18,36,54,86].includes(e.z)?"Gaz":"Katı",en=ENV[e.z-1]&&ENV[e.z-1]!="-"?ENV[e.z-1]:"—",odd=[41,44,45,57,58,64,89,90,91,92,93,96,103].includes(e.z)||e.z>=104;
+const cells=[["Proton",e.z],["Elektron (nötr)",e.z],["Nötron (yaklaşık)",nt],["Atom kütlesi",e.m],["Periyot",e.z<=2?1:e.k=="l"?6:e.k=="c"?7:e.p[0]],["Grup",e.k=="l"||e.k=="c"?"3B (f-bloğu)":e.p[1]],["Hâl (25 °C)",st],["Elektronegatiflik",en]],box=(a,b)=>`<div class="card p-2"><dt style="color:var(--mut)" class="text-xs">${a}</dt><dd class="font-bold text-sm">${b}</dd></div>`;
+mc.innerHTML=`<button id="x" class="absolute top-3 right-4 text-xl" aria-label="Kapat">✕</button><div class="el ${e.k}" style="width:96px;height:96px;cursor:default;font-size:13px;transform:none"><span>${e.z}</span><b style="font-size:34px">${e.s}</b></div><h3 class="text-2xl font-bold mt-3 glow">${e.n}</h3><p class="text-sm" style="color:var(--mut)">${CN[e.k]}</p><dl class="grid grid-cols-2 gap-2 mt-4">${cells.map(x=>box(...x)).join("")}</dl><dl class="grid gap-2 mt-2">${box("Elektron dizilimi",c.s+(odd?" *":""))}${box("Katman dizilimi (K, L, M…)",c.sh.join(", ")+(odd?" *":""))}${USE[e.z]?box("Kullanım alanı",USE[e.z]):""}</dl>${odd?'<p class="text-xs mt-2" style="color:var(--mut)">* Bu elementte dizilim istisnalı veya öngörülmüş olabilir.</p>':""}`;
+modal.classList.remove("hidden");modal.classList.add("flex");document.getElementById("x").onclick=closeEl}
+function closeEl(){modal.classList.add("hidden");modal.classList.remove("flex")}
+modal.onclick=e=>{if(e.target===modal)closeEl()};document.addEventListener("keydown",e=>{if(e.key=="Escape")closeEl()});
+const root=document.documentElement,tb=document.getElementById("theme");
+function setT(d){root.classList.toggle("dark",d);tb.textContent=d?"☀ Açık":"🌙 Koyu";try{localStorage.setItem("zt",d?"d":"l")}catch(e){}}
+try{if(localStorage.getItem("zt")=="l")setT(false)}catch(e){}
+tb.onclick=()=>setT(!root.classList.contains("dark"));
+document.getElementById("yr").textContent=new Date().getFullYear();
+(()=>{
+const $=i=>document.getElementById(i),ri=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),R=a=>a[ri(0,a.length-1)];
+const SH=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=ri(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const sub=n=>String(n).replace(/\d/g,d=>"₀₁₂₃₄₅₆₇₈₉"[d]),ch=c=>(Math.abs(c)>1?String(Math.abs(c)).replace(/\d/g,d=>"⁰¹²³⁴⁵⁶⁷⁸⁹"[d]):"")+(c>0?"⁺":"⁻");
+function mk(t,c,ds,n,e){c=String(c);ds=[...new Set(ds.map(String))].filter(x=>x!==c);const o=SH([c,...SH(ds).slice(0,n-1)]);return{t,o,c:o.indexOf(c),e}}
+/* ---- Kimya testi: sonsuz, hesapla üretilen sorular ---- */
+function kIon(){let z,c,e;do{z=ri(3,35);c=R([-3,-2,-1,1,2,3]);e=z-c}while(e<2);const s=EL[z-1].s;
+return mk(`${sub(z)}${s}${ch(c)} iyonunun elektron sayısı kaçtır?`,e,[z,z+c,e+1,e-1,z+1,e+2,e-2].filter(x=>x>0),5,`Nötr ${s} atomunda ${z} elektron vardır. ${c>0?c+" elektron verince":(-c)+" elektron alınca"} ${z} ${c>0?"−":"+"} ${Math.abs(c)} = ${e} elektron olur.`)}
+function kNeu(){const z=ri(3,82),a=Math.round(EL[z-1].m);return mk(`Atom numarası ${z}, kütle numarası ${a} olan bir atomun nötron sayısı kaçtır?`,a-z,[z,a,a+z,a-z+1,a-z-1,a-z+2],5,`Nötron sayısı = kütle numarası − proton sayısı = ${a} − ${z} = ${a-z}.`)}
+function kZ(){let z,c,e;do{z=ri(7,35);c=R([-3,-2,-1,1,2,3]);e=z-c}while(e<2);
+return mk(`X${ch(c)} iyonunun ${e} elektronu vardır. X elementinin atom numarası kaçtır?`,z,[e,e-c,e+1,z+1,z-1,z+2].filter(x=>x>0),5,c<0?`Anyon ${-c} elektron almıştır; nötr atomda ${e} − ${-c} = ${z} elektron vardır, bu da atom numarasına eşittir.`:`Katyon ${c} elektron vermiştir; nötr atomda ${e} + ${c} = ${z} elektron vardır, bu da atom numarasına eşittir.`)}
+const TR=["Kimyasal özelliği değişir.","Elektron sayısı değişir.","Çekirdek yükü değişmez.","Proton sayısı değişmez.","Atom numarası değişmez.","Kütle numarası değişmez.","Nötron sayısı değişmez.","Element türü değişmez.","Atom yarıçapı değişir."],FA=["Element türü değişir.","Çekirdek yükü değişir.","Proton sayısı değişir.","Atom numarası değişir.","Nötron sayısı değişir.","Kütle numarası değişir."];
+const ZG=["Çekirdek yükü","Proton sayısı","Atom numarası","Element türü"],CB=["Yalnız I","Yalnız II","Yalnız III","I ve II","I ve III","II ve III","I, II ve III"];
+function pk(a,n,u){const o=[];for(const s of SH(a)){let st=s.split(" değiş")[0];if(ZG.includes(st))st="Z";if(!u.has(st)){u.add(st);o.push(s)}if(o.length==n)break}return o}
+function kStat(){let it;do{const u=new Set(),k=ri(1,3);it=SH([...pk(TR,k,u).map(s=>[s,1]),...pk(FA,3-k,u).map(s=>[s,0])])}while(it.length<3);
+const z=ri(3,35),g=Math.random()<.5,rm=["I","II","III"],ok=it.map((x,i)=>x[1]?i:-1).filter(i=>i>=0),ans=ok.length==3?CB[6]:ok.length==2?CB[[0,1].join()==ok.join()?3:[0,2].join()==ok.join()?4:5]:CB[ok[0]];
+return mk(`${sub(z)}${EL[z-1].s} element atomu 1 elektron ${g?"aldığında":"verdiğinde"},<br>${it.map((x,i)=>rm[i]+". "+x[0]).join("<br>")}<br>yargılarından hangileri doğrudur?`,ans,CB,5,`Elektron alıp vermek çekirdeği değiştirmez: proton, nötron, atom numarası, kütle numarası ve element türü sabit kalır. Elektron sayısı, yük, atom yarıçapı ve kimyasal özellik değişir. Doğru yargılar: ${ok.map(i=>rm[i]).join(", ")}.`)}
+function kPer(){const z=R([...Array(18).keys()].map(i=>i+3).concat([31,32,33,34,35,36])),[p,c]=EL[z-1].p,g=c<=2?c:c-10,f=(a,b)=>`${a}. periyot, ${b}A grubu`,all=[];for(let a=2;a<=4;a++)for(let b=1;b<=8;b++)all.push(f(a,b));
+return mk(`Atom numarası ${z} olan nötr bir atom periyodik sistemde hangi periyot ve grupta yer alır?`,f(p,g),all,5,`Elektron dizilimine göre ${p} katman ve son katmanda ${g} elektron bulunur: ${p}. periyot, ${g}A grubu.`)}
+const genK=()=>{const r=Math.random();return r<.2?kIon():r<.35?kNeu():r<.5?kZ():r<.8?kStat():kPer()};
+/* ---- Element testleri ---- */
+const CATS=[["Soygazlar","g","soy gazdır"],["Ametaller","n","ametaldir"],["Halojenler","h","halojendir"],["Metaller","aetplc","metaldir"],["Alkali Metaller","a","alkali metaldir"],["Toprak Alkali Metaller","e","toprak alkali metaldir"],["Geçiş Metalleri","t","geçiş metalidir"],["Zayıf Metaller","p","zayıf metaldir"],["Yarı Metaller","m","yarı metaldir"],["Lantanitler","l","lantanittir"],["Aktinitler","c","aktinittir"]];
+const ex=e=>`Atom numarası: ${e.z} • Sembol: ${e.s} • Sınıf: ${CN[e.k]}`,unk=x=>x.z>=109&&x.z<=116;
+function genEl(m,o){const e=R(o.p),O=()=>SH(EL.filter(x=>x!==e)).slice(0,6),nz=[1,2,3,4,5,-1,-2,-3,-4].map(d=>e.z+d).filter(x=>x>0&&x<=118);
+const ty=m=="d"?ri(0,5):o.t=="s"?0:o.t=="i"?1:ri(0,1),w=ex(e)+` (${e.n})`;
+switch(ty){case 0:return mk(`${e.s} sembolü hangi elemente aittir?`,e.n,O().map(x=>x.n),4,w);
+case 1:return mk(`${e.n} elementinin sembolü hangisidir?`,e.s,O().map(x=>x.s),4,w);
+case 2:return mk(`Atom numarası ${e.z} olan element hangisidir?`,e.n,O().map(x=>x.n),4,w);
+case 3:return mk(`${e.n} elementinin atom numarası kaçtır?`,e.z,nz,4,w);
+case 4:{const out=SH(EL.filter(x=>!o.p.includes(x)&&x.z!=1&&!unk(x))).slice(0,6);return mk(`Aşağıdakilerden hangisi bir ${o.sg}?`,e.n,out.map(x=>x.n),4,w)}
+default:return mk(`${e.n} elementi hangi sınıfta yer alır?`,CN[e.k],Object.values(CN),4,w)}}
+/* ---- Kimya konu üreteçleri ---- */
+const KT=[["Karışık"],["Atom ve Periyodik Sistem"],["Mol Kavramı"],["pH ve Asit-Baz"],["Gazlar"],["Çözeltiler"]],fm=x=>String(+x.toFixed(3)).replace(".",","),dn=v=>[v*2,v/2,v+1,v-1,v+2,v*3,v+.5,v+3].filter(x=>x>0).map(fm),rg=(a,b)=>[...Array(b-a+1).keys()].map(i=>i+a);
+const MOLS=[["H₂O",18,"H: 1, O: 16"],["CO₂",44,"C: 12, O: 16"],["CH₄",16,"C: 12, H: 1"],["NH₃",17,"N: 14, H: 1"],["NaOH",40,"Na: 23, O: 16, H: 1"],["CaCO₃",100,"Ca: 40, C: 12, O: 16"],["H₂SO₄",98,"H: 1, S: 32, O: 16"],["O₂",32,"O: 16"],["N₂",28,"N: 14"]];
+function kMol(){const[f,M,a]=R(MOLS),n=R([.5,1,2,3,4,5]),g=n*M;return Math.random()<.5?mk(`${fm(g)} gram ${f} kaç moldür? (${a})`,fm(n),dn(n),5,`n = m / MA = ${fm(g)} / ${M} = ${fm(n)} mol.`):mk(`${fm(n)} mol ${f} kaç gramdır? (${a})`,fm(g),dn(g),5,`m = n · MA = ${fm(n)} · ${M} = ${fm(g)} g.`)}
+function kPH(){const t=ri(0,3),k=ri(1,6);if(t==0)return mk(`10⁻${sp(k)} M HCl çözeltisinin pH değeri kaçtır? (25 °C)`,k,rg(1,14),5,`HCl kuvvetli asittir: [H⁺] = 10⁻${sp(k)} M, pH = ${k}.`);
+if(t==1)return mk(`10⁻${sp(k)} M NaOH çözeltisinin pH değeri kaçtır? (25 °C)`,14-k,rg(1,14),5,`NaOH kuvvetli bazdır: pOH = ${k}, pH = 14 − ${k} = ${14-k}.`);
+const a=ri(1,13);if(t==2)return mk(`pH değeri ${a} olan çözeltinin pOH değeri kaçtır? (25 °C)`,14-a,rg(1,14),5,`pH + pOH = 14 olduğundan pOH = ${14-a}.`);
+return mk(`pH değeri ${a} olan çözeltide [H⁺] kaç M’dir?`,`10⁻${sp(a)}`,rg(1,13).map(x=>`10⁻${sp(x)}`),5,`pH = −log[H⁺] olduğundan [H⁺] = 10⁻${sp(a)} M.`)}
+function kGaz(){if(Math.random()<.5){let P1,V1,P2;do{P1=R([1,2,3,4,6]);V1=R([2,4,6,8,12]);P2=R([1,2,3,4,6,8,12])}while(P1==P2||(P1*V1)%P2);const V2=P1*V1/P2;return mk(`Sabit sıcaklıkta ${P1} atm basınçta ${V1} L hacim kaplayan ideal gazın basıncı ${P2} atm yapılırsa hacmi kaç L olur?`,fm(V2),dn(V2),5,`P₁V₁ = P₂V₂ → ${P1} · ${V1} = ${P2} · V₂ → V₂ = ${fm(V2)} L.`)}
+let T1,T2,V1;do{T1=R([200,300,400,500,600]);T2=R([200,300,400,500,600]);V1=R([2,3,4,6,8,12])}while(T1==T2||(V1*T2)%T1);const V2=V1*T2/T1;return mk(`Sabit basınçta ${V1} L hacimli ideal gaz ${T1} K’den ${T2} K’e getiriliyor. Son hacim kaç L olur?`,fm(V2),dn(V2),5,`V₁/T₁ = V₂/T₂ → ${V1}/${T1} = V₂/${T2} → V₂ = ${fm(V2)} L.`)}
+function kCoz(){if(Math.random()<.5){const M=R([.5,1,2,3,4]),V=R([.5,1,2,4]),n=M*V;return mk(`${fm(n)} mol NaCl ile ${fm(V)} L çözelti hazırlanıyor. Çözeltinin molar derişimi kaç M’dir?`,fm(M),dn(M),5,`M = n / V = ${fm(n)} / ${fm(V)} = ${fm(M)} M.`)}
+const M1=R([1,2,4,5,10]),V1=R([100,200,250]),f=R([2,4,5]),V2=V1*f,M2=M1/f;return mk(`${M1} M ${V1} mL çözelti suyla ${V2} mL’ye seyreltiliyor. Yeni derişim kaç M olur?`,fm(M2),dn(M2),5,`M₁V₁ = M₂V₂ → ${M1} · ${V1} = M₂ · ${V2} → M₂ = ${fm(M2)} M.`)}
+function genKT(c){c=c||ri(1,5);return[genK,kMol,kPH,kGaz,kCoz][c-1]()}
+/* ---- Yanlışlarım, seri, rozet, sayaç ---- */
+const WR=()=>{try{return JSON.parse(localStorage.getItem("zw")||"[]")}catch(e){return[]}},sw=a=>{try{localStorage.setItem("zw",JSON.stringify(a.slice(-100)))}catch(e){}},yc=()=>{$("ybtn").textContent="Yanlışlarım ("+WR().length+")"};
+function rec2(x,ok){let w=WR();const has=w.some(v=>v.t==x.t);if(!ok){if(!has)w.push(x)}else if(T.m=="y")w=w.filter(v=>v.t!=x.t);sw(w);yc()}
+function rev(){const w=WR();if(!w.length){qb.innerHTML='<p class="font-semibold">Hata defterin boş 🎉</p><p class="text-sm mt-2" style="color:var(--mut)">Yanlış yaptığın veya süresi dolan sorular burada toplanır, sonra tekrar çözebilirsin. Doğru bildikçe listeden çıkar. Bu testten puan verilmez.</p>';return}T.m="y";T.i=T.d=T.y=T.b=0;T.qs=SH(w);T.n=T.qs.length;T.tm=false;show()}
+const dt=d=>d.toLocaleDateString("sv"),alive=()=>U&&[dt(new Date()),dt(new Date(Date.now()-864e5))].includes(U.last);
+function streak(){const td=dt(new Date());if(U.last!=td){U.streak=U.last==dt(new Date(Date.now()-864e5))?(U.streak||0)+1:1;U.last=td}if(T.m!="y"&&T.n>=10&&T.d==T.n)U.perf=1}
+function bd(){const e=$("badges");if(!U){e.textContent="";return}const s=alive()?U.streak||0:0,B=[[U.tests>=1,"🌱 İlk Test"],[U.tests>=5,"📚 5 Test"],[U.tests>=20,"🧠 20 Test"],[s>=3,"🔥 3 Gün Seri"],[s>=7,"⚡ 7 Gün Seri"],[U.points>=50,"🏅 50 Puan"],[U.points>=200,"👑 200 Puan"],[!!U.perf,"💯 Tam Puan"]].filter(b=>b[0]).map(b=>b[1]);e.textContent=`🔥 ${s} günlük seri`+(B.length?"  •  "+B.join("  "):"")}
+function yks(){const g=(y,m,d)=>Math.ceil((new Date(y,m-1,d)-new Date())/864e5),a=g(2027,6,19),b=g(2027,6,20);$("yks").textContent=a>0?`⏳ TYT’ye ${a} gün • AYT’ye ${b} gün kaldı (ÖSYM 2027 takvimi)`:""}
+/* ---- Test motoru ---- */
+const qb=$("qbox"),T={m:"k",qs:[],i:0,d:0,y:0,b:0,n:30,tm:false},net=()=>Number((T.d-T.y/4).toFixed(2));let tid=null;const stop=()=>clearInterval(tid);
+function paintTabs(m){document.querySelectorAll("#tabs button").forEach(b=>{const a=b.dataset.m==m;b.style.background=a?"var(--blue)":"";b.style.color=a?"#001018":""})}
+function stats(){$("sd").textContent=T.d;$("sy").textContent=T.y;$("sn").textContent=net();$("sq").textContent=Math.min(T.i+1,T.n)+"/"+T.n}
+function start(m){stop();paintTabs(m);T.m=m;if(m=="y")rev();else setup(m)}
+function setup(m){const O={n:20,t:"m",c:0},grp=(k,l)=>`<div class="flex flex-wrap gap-2 mb-4" data-k="${k}">${l.map(([v,t])=>`<button class="btn text-sm" data-v="${v}">${t}</button>`).join("")}</div>`,h=t=>`<p class="font-semibold mb-2">${t}</p>`;
+qb.innerHTML=h("Soru sayısı")+grp("n",[10,20,30,40,50].map(x=>[x,x]))+(m=="e"?h("Soru türü")+grp("t",[["s","Sembol → İsim"],["i","İsim → Sembol"],["m","Karışık"]]):h("Konu seç")+grp("c",(m=="k"?KT:CATS).map((c,i)=>[i,c[0]])))+(m=="k"?"":'<p class="text-sm mb-3" style="color:var(--mut)">⏱ Her soru için 20 saniye süre var. Süre dolarsa soru boş sayılır.</p>')+'<button id="go" class="btn">Testi Başlat</button>';
+const bs=qb.querySelectorAll("[data-k] button"),paint=()=>bs.forEach(b=>{const a=String(O[b.parentNode.dataset.k])==b.dataset.v;b.style.background=a?"var(--blue)":"";b.style.color=a?"#001018":""});
+bs.forEach(b=>b.onclick=()=>{O[b.parentNode.dataset.k]=b.dataset.v;paint()});paint();$("go").onclick=()=>begin(m,O)}
+function begin(m,o){T.m=m;T.i=T.d=T.y=T.b=0;const N=+o.n,seen=new Set();T.qs=[];let p=EL,sg="";if(m=="d"){const c=CATS[+o.c];p=EL.filter(e=>c[1].includes(e.k)&&!unk(e));sg=c[2]}
+o={...o,p,sg};for(let g=0;T.qs.length<N&&g<1500;g++){const x=m=="k"?genKT(+o.c):genEl(m,o);if(!seen.has(x.t)){seen.add(x.t);T.qs.push(x)}}T.n=T.qs.length;T.tm=m!="k";show()}
+function timer(){stop();let s=20;const el=$("tm"),tick=()=>{el.textContent="⏱ "+s+" sn";el.style.color=s<=5?"#fb7185":"var(--green)";if(s--<=0)pick(-1)};tick();tid=setInterval(tick,1000)}
+function show(){const x=T.qs[T.i];stats();qb.innerHTML=`${T.tm?'<div id="tm" class="text-sm font-bold mb-2"></div>':""}<p class="font-semibold mb-4 leading-relaxed">${T.i+1}. ${x.t}</p><div class="grid gap-2">${x.o.map((o,i)=>`<button class="opt" data-i="${i}"><b>${"ABCDE"[i]})</b> ${o}</button>`).join("")}</div><div id="fb" class="mt-4"></div>`;qb.querySelectorAll(".opt").forEach(b=>b.onclick=()=>pick(+b.dataset.i));if(T.tm)timer()}
+function pick(i){stop();const x=T.qs[T.i],bs=qb.querySelectorAll(".opt");bs.forEach(b=>b.disabled=true);bs[x.c].classList.add("ok");const ok=i==x.c;if(i<0)T.b++;else if(ok)T.d++;else{T.y++;bs[i].classList.add("no")}rec2(x,ok);stats();
+$("fb").innerHTML=`<p class="font-bold" style="color:${ok?"var(--green)":"#fb7185"}">${i<0?"⏰ Süre doldu!":ok?"✔ Doğru!":"✘ Yanlış!"}</p><p class="text-sm mt-1" style="color:var(--mut)">${x.e}</p><button id="nx" class="btn mt-3">${T.i<T.n-1?"Sonraki Soru →":"Sonucu Gör"}</button>`;$("nx").onclick=()=>{T.i++;T.i<T.n?show():fin()}}
+function fin(){stop();const N=T.n,b=T.m=="y"?0:T.d==N?10:T.d*3>=2*N?8:T.d*3>=N?5:T.d>0?3:0,p=b?Math.max(1,Math.round(b*N/30)):0;let n;if(U){streak();U.points+=p;U.tests++;U.hist=(U.hist||[]).concat([[Date.now(),p]]).slice(-300);persist().then(lb);chip();n=`+${p} puan kazandın! Toplam puanın: ${U.points}`}else n=`Bu testten ${p} puan kazanırdın. Puan toplamak için kayıt ol!`;
+qb.innerHTML=`<p class="text-xl font-bold glow">Test bitti!</p><p class="mt-2">Doğru: ${T.d} • Yanlış: ${T.y} • Boş: ${T.b} • Net: ${net()}</p><p class="mt-2 font-semibold" style="color:var(--green)">${n}</p><div class="flex flex-wrap gap-2 mt-4"><button id="nt" class="btn">Yeni Test</button>${U?"":'<button id="r2" class="btn">Kayıt Ol</button>'}</div>`;$("nt").onclick=()=>start(T.m);if(!U)$("r2").onclick=regModal}
+document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>start(b.dataset.m));
+function filters(){const L=[["","Tümü (118)"],["a","Alkali Metal"],["e","Toprak Alkali"],["t","Geçiş Metalleri"],["p","Zayıf Metaller"],["m","Yarı Metaller"],["n","Ametaller"],["h","Halojenler"],["g","Soygazlar"],["l","Lantanitler"],["c","Aktinitler"]],box=$("flt");
+box.innerHTML=L.map(([k,t])=>`<button class="btn text-xs" data-k="${k}">${t}</button>`).join("");const bs=box.querySelectorAll("button"),set=k=>{bs.forEach(b=>{const a=b.dataset.k==k;b.style.background=a?"var(--blue)":"";b.style.color=a?"#001018":""});q.value="";EL.forEach(e=>{e.d.classList.remove("hit");e.d.classList.toggle("dim",!!k&&e.k!=k)});msg.style.color="var(--green)";msg.textContent=k?`${CN[k]}: ${EL.filter(e=>e.k==k).length} element`:""};bs.forEach(b=>b.onclick=()=>set(b.dataset.k));set("")}
+/* ---- Kullanıcı / kayıt ---- */
+const dbp=(window.claude&&claude.use?claude.use("db"):Promise.resolve(null)).catch(()=>null);
+const LP=()=>{try{return JSON.parse(localStorage.getItem("zp")||"{}")}catch(e){return{}}},rec=u=>({id:u.id,nick:u.nick,points:u.points,tests:u.tests,hist:u.hist||[],streak:u.streak||0,last:u.last||"",perf:u.perf||0});
+let U=null;try{const u=localStorage.getItem("zu");if(u&&LP()[u])U={u,...LP()[u]}}catch(e){}
+function zid(){try{let i=localStorage.getItem("zid");if(!i){i=Math.random().toString(36).slice(2)+Date.now().toString(36);localStorage.setItem("zid",i)}return i}catch(e){return window._zid=window._zid||Math.random().toString(36).slice(2)}}
+async function persist(){try{const m=LP();m[U.u]=rec(U);localStorage.setItem("zp",JSON.stringify(m))}catch(e){}const db=await dbp;if(db)try{await db.doc("players/"+U.u).set(rec(U))}catch(e){}}
+function chip(){bd();const c=$("chip"),h=$("hello");if(U){c.classList.remove("hidden");c.textContent="👤 "+U.nick+" • "+U.points+" puan";h.innerHTML='Hoş geldin, <span class="grad"></span>';h.lastChild.textContent=U.nick;$("reg").textContent="Çıkış"}else{c.classList.add("hidden");h.innerHTML='Hoşgeldin <span class="grad">Napıyoruz</span>';$("reg").textContent="Kayıt Ol / Giriş"}}
+const M=(h,w)=>{mc.style.maxWidth=w||"";mc.style.maxHeight="88vh";mc.style.overflowY="auto";mc.innerHTML='<button class="absolute top-3 right-4 text-xl" aria-label="Kapat" onclick="closeEl()">✕</button>'+h;modal.classList.remove("hidden");modal.classList.add("flex")};
+function regModal(){const inp='class="w-full px-4 py-2 rounded-xl outline-none mt-1" style="background:var(--bg);border:1px solid var(--bd);color:var(--tx)"';
+M(`<h3 class="text-xl font-bold glow">Kayıt Ol / Giriş</h3><p class="text-sm mt-1" style="color:var(--mut)">Her kullanıcı adı yalnızca bir kişi tarafından alınabilir.</p><label class="block text-sm mt-4">Kullanıcı adı<input id="ru" ${inp} maxlength="20" placeholder="ornek_kullanici"></label><label class="block text-sm mt-3">Takma ad (ekranda görünen, isteğe bağlı)<input id="rn" ${inp} maxlength="24" placeholder="Örn: Serhat"></label><p id="re" class="text-sm mt-3 text-rose-400 min-h-5"></p><button id="rg" class="btn mt-2">Devam</button><p class="text-xs mt-4" style="color:var(--mut)">Not: Şifre yok; hesap bu tarayıcıya bağlanır.</p>`,"26rem");
+$("rg").onclick=async()=>{const u=$("ru").value.trim().toLowerCase(),n=$("rn").value.trim().slice(0,24),e=$("re");
+if(!/^[a-z0-9_.-]{3,20}$/.test(u)){e.textContent="Kullanıcı adı 3-20 karakter olmalı; küçük harf, rakam, _ . - kullanılabilir.";return}
+e.textContent="Kontrol ediliyor…";const db=await dbp,id=zid();let r=LP()[u]||null;
+if(db)try{const s=await db.doc("players/"+u).get();if(s.exists)r=s.data()}catch(x){}
+if(r&&r.id!==id){e.textContent="Bu kullanıcı adı zaten alınmış. Başka bir tane dene.";return}
+U={u,id,nick:n||(r&&r.nick)||u,points:r?r.points||0:0,tests:r?r.tests||0:0,hist:r?r.hist||[]:[],streak:r?r.streak||0:0,last:r?r.last||"":"",perf:r?r.perf||0:0};try{localStorage.setItem("zu",u)}catch(x){}await persist();chip();closeEl()}}
+$("reg").onclick=()=>{if(U){try{localStorage.removeItem("zu")}catch(e){}U=null;chip()}else regModal()};
+function aboutModal(){const hr='<hr class="my-4" style="border-color:var(--bd)">',lb2='style="color:var(--mut)"';M(`<div class="flex items-center gap-4"><div class="flex items-center justify-center rounded-2xl font-extrabold text-2xl shrink-0" style="width:64px;height:64px;background:linear-gradient(135deg,var(--blue),var(--green));color:#001018">SZ</div><div><h3 class="text-2xl font-bold">Serhat Zeren</h3><p class="text-sm font-mono" style="color:var(--blue)">Kimya &amp; Dijital İçerik Geliştiricisi</p></div></div>${hr}<div class="grid sm:grid-cols-2 gap-3"><div class="card p-4" style="border-left:3px solid var(--green)"><p class="text-sm" ${lb2}>Akademik Hedef 🎓</p><p class="font-bold mt-1">Tıp / Sağlık Bilimleri</p><p class="text-sm" ${lb2}>YKS / TYT - AYT Hazırlık Süreci</p></div><div class="card p-4" style="border-left:3px solid var(--blue)"><p class="text-sm" ${lb2}>Sertifikasyon 🏅</p><p class="font-bold mt-1">GSB Yapay Zekâ Okuryazarlığı</p><p class="text-sm" style="color:var(--green)">+ 12 Adet Sertifika (e-Devlet Onaylı)</p></div></div><div class="card p-4 mt-3"><p class="font-bold mb-2">🎯 Çalışma Anlayışı ve Vizyon</p><p class="text-sm leading-relaxed" ${lb2}>Disiplinli çalışma ve sürekli öğrenme ilkesiyle hareket ederek kimya dersini ezberden uzak, görsel ve interaktif bir bilim portalına dönüştürmeyi amaçlıyorum.</p><p class="text-sm leading-relaxed mt-2" ${lb2}>Gençlik ve Spor Bakanlığı onaylı Yapay Zekâ Okuryazarlığı sertifikası (100/100 tam puan) ve toplam 12 adet başarı belgesi ile dijital alandaki yetkinliklerimi güncel tutuyorum.</p></div>${hr}<div class="flex justify-between text-sm" ${lb2}><span>ZEREN CHEM Platformu 2026</span><span class="flex gap-3"><a href="#" class="hover:text-cyan-400">GitHub</a><a href="#" class="hover:text-cyan-400">LinkedIn</a></span></div>`,"44rem")}
+$("aboutbtn").onclick=$("navabout").onclick=e=>{e.preventDefault();aboutModal()};
+function tabs(id,cb,first){const bs=document.querySelectorAll("#"+id+" button"),set=v=>{bs.forEach(b=>{const a=b.dataset.t==v;b.style.background=a?"var(--blue)":"";b.style.color=a?"#001018":""});cb(v)};bs.forEach(b=>b.onclick=()=>set(b.dataset.t));set(first)}
+/* ---- Liderlik tablosu ---- */
+let LT="all";
+const wk=()=>{const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-((d.getDay()+6)%7));return d.getTime()},mo=()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth(),1).getTime()};
+async function lb(){const box=$("lbox");let rows=Object.entries(LP()).map(([u,r])=>({u,...r}));const db=await dbp;
+if(db)try{const q=await db.collection("players").get();rows=q.docs.map(d=>({u:d.id,...d.data()}))}catch(e){}
+const since=LT=="w"?wk():LT=="m"?mo():0,sc=r=>LT=="all"?r.points||0:(r.hist||[]).reduce((a,[t,p])=>t>=since?a+p:a,0);
+const top=rows.map(r=>({n:r.nick||r.u,s:sc(r),me:!!U&&r.u==U.u})).filter(r=>r.s>0).sort((a,b)=>b.s-a.s).slice(0,10);
+box.innerHTML=top.length?top.map((r,i)=>`<div class="flex items-center gap-3 px-4 py-3" style="border-top:${i?1:0}px solid var(--bd);${r.me?"background:color-mix(in srgb,var(--green) 14%,transparent)":""}"><b class="w-8">${["🥇","🥈","🥉"][i]||(i+1)+"."}</b><span class="flex-1 nm"></span><b class="glow">${r.s} puan</b></div>`).join(""):'<p class="p-4 text-sm" style="color:var(--mut)">Bu dönem için henüz puan yok. İlk puanı sen al!</p>';
+box.querySelectorAll(".nm").forEach((e,i)=>e.textContent=top[i].n+(top[i].me?" (sen)":""))}
+/* ---- Konu dağılımı (TYT / AYT) ---- */
+const KY={tyt:"2025,2024,2023,2022,2021,2020,2019,2018,2017,2016,2015",ayt:"2024,2023,2022,2021,2020,2019,2018,2017,2016,2015"};
+const KR={tyt:`Kimya Bilimi|1,1,1,1,1,1,-,2,3,3,3
+Atomun Yapısı|1,1,-,-,-,1,1,-,2,-,-
+Periyodik Tablo|-,-,1,1,1,-,1,1,1,2,1
+Maddenin Halleri|1,1,1,1,1,1,1,1,2,1,1
+Kimyasal Türler Arası Etkileşimler|1,1,1,1,1,1,1,1,1,3,5
+Kimyasal Hesaplamalar|1,1,-,-,1,1,-,-,-,1,-
+Kimyanın Temel Kanunları|-,-,1,1,-,-,-,1,1,-,-
+Asit, Baz ve Tuz|1,1,1,1,1,1,1,-,-,-,-
+Karışımlar|1,1,1,1,1,1,1,-,1,2,2
+Kimya Her Yerde|-,-,-,-,-,-,1,1,2,1,1`,ayt:`Kimya Bilimi|-,-,-,-,-,-,-,4,2,-
+Atom ve Yapısı|-,-,-,-,-,1,-,1,2,2
+Periyodik Sistem|-,-,-,1,-,-,1,1,2,2
+Kimyasal Türler Arası Etkileşim|-,-,-,-,-,-,-,2,3,2
+Kimyasal Hesaplamalar|-,-,-,-,-,1,1,2,1,1
+Modern Atom Teorisi|1,1,1,-,2,-,-,-,-,-
+Gazlar|1,2,1,1,1,1,1,2,1,1
+Sıvı Çözeltiler|2,2,2,2,2,1,1,3,1,1
+Kimyasal Tepkimelerde Enerji|1,1,1,1,1,1,1,3,2,3
+Kimyasal Tepkimelerde Hız|1,1,1,1,1,1,1,-,-,1
+Kimyasal Tepkimelerde Denge|1,2,1,1,1,-,-,1,2,1
+Asit-Baz Dengesi|1,-,-,1,1,2,1,1,-,1
+Çözünürlük Dengesi|-,-,1,-,-,-,-,1,1,1
+Kimya ve Elektrik|2,3,2,2,3,2,2,3,2,2
+Organik Kimya|3,1,3,3,1,3,4,6,11,12`};
+function kt(v){const ys=KY[v].split(","),rs=KR[v].split("\n").map(l=>{const[a,b]=l.split("|");return[a,b.split(",").map(x=>x=="-"?0:+x)]}),tot=ys.map((_,i)=>rs.reduce((t,r)=>t+r[1][i],0)),st='style="background:var(--card)"';
+$("kbox").innerHTML=`<table class="w-full text-sm" style="min-width:680px;border-collapse:collapse"><thead><tr><th class="text-left p-2 sticky left-0" ${st}>${v.toUpperCase()} Kimya Konuları</th>${ys.map(y=>`<th class="p-2">${y}</th>`).join("")}</tr></thead><tbody>${rs.map(([n,a])=>`<tr style="border-top:1px solid var(--bd)"><td class="p-2 sticky left-0" ${st}>${n}</td>${a.map(x=>`<td class="p-2 text-center" style="${x?`background:color-mix(in srgb,var(--blue) ${Math.min(15+x*7,75)}%,transparent);font-weight:600`:"color:var(--mut)"}">${x||"–"}</td>`).join("")}</tr>`).join("")}<tr style="border-top:2px solid var(--blue)"><td class="p-2 font-bold sticky left-0" ${st}>SORU SAYISI</td>${tot.map(x=>`<td class="p-2 text-center font-bold glow">${x}</td>`).join("")}</tr></tbody></table>`}
+chip();start("k");filters();yc();yks();tabs("ltabs",v=>{LT=v;lb()},"all");tabs("ktabs",kt,"tyt");
+})();
+</script>
+</body>
+</html>
